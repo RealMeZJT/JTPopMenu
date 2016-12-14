@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  JTPopMenu
 //
-//  Created by DaiDai on 13/12/2016.
+//  Created by ZhouJiatao on 13/12/2016.
 //  Copyright © 2016 ZhouJiatao. All rights reserved.
 //
 

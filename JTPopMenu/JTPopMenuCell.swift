@@ -12,10 +12,14 @@ class JTPopMenuCell: UITableViewCell {
     static let ReuseIdentifier = "JTPopMenuCell"
     
     struct Contants {
-        static let horizontalMargin:CGFloat = 15
-        static let iconSize:CGFloat = 15
-        static let titleFont = UIFont.systemFont(ofSize: 14)
+        static let leftPadding:CGFloat = 26
+        static let rightPadding:CGFloat = 45
+        static let iconSpacingToTitle: CGFloat = 24
+        static let iconSize:CGFloat = 17
+        static let titleFont = UIFont.systemFont(ofSize: 17)
         static let titleColor = UIColor.white
+        
+        //分界线57,71,63
     }
     
     var icon = UIImageView()
@@ -50,21 +54,22 @@ class JTPopMenuCell: UITableViewCell {
         super.layoutSubviews()
         
         icon.sizeToFit()
-        icon.frame = CGRect(x: Contants.horizontalMargin,
+        icon.frame = CGRect(x: Contants.leftPadding,
                             y: (contentView.frame.height - Contants.iconSize) / 2, //make it center
                             width: Contants.iconSize,
                             height: Contants.iconSize)
         
         titleLabel.sizeToFit()
         let titleLabelX = icon.image == nil
-            ? Contants.horizontalMargin
-            : icon.frame.maxX + Contants.horizontalMargin
+            ? Contants.leftPadding
+            : icon.frame.maxX + Contants.iconSpacingToTitle
         titleLabel.frame = CGRect(x: titleLabelX,
                                   y: (contentView.frame.height - titleLabel.frame.height) / 2, //make it center
                                   width: titleLabel.frame.width,
                                   height: titleLabel.frame.height)
         
-        expectWidth = titleLabel.frame.maxX  + Contants.horizontalMargin
+        expectWidth = titleLabel.frame.maxX  + Contants.rightPadding
+
     }
     
     

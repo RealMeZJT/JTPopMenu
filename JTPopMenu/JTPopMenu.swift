@@ -15,27 +15,21 @@ protocol JTPopMenuDelegate {
 class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
 
     struct Contants {
-        static let MenuCellResuseID = "JTPopMenuCell"
-        static let tableBgImageName = "menu_bg_9patch"
-        static let arrowImageName = "menu_arrow_up"
-        
-        //这两个值是从实际图片量取的
-        static let tableBgImageCapInsets = UIEdgeInsets(top: 11, left: 11, bottom: 11, right: 11)
-        static let tableBgImageShadowLenght:CGFloat = 7 //阴影的长度。tableBgImageCapInsets的一部分。
-        
-        static let bgViewAlpha:CGFloat = 0.3
-        
+        static let menuCellResuseID = "JTPopMenuCell"
+        static let bgViewAlpha:CGFloat = 0.10
         static let arrowSpacingToAnchor:CGFloat = 8
-        static let minHorizontalSpacingToScreen:CGFloat = 0
+        static let arrowViewSize = CGSize(width: 12, height: 7)
+        static let minHorizontalSpacingToScreen:CGFloat = 4
+        static let cellHeight:CGFloat = 50
         
-        static let cellHeight:CGFloat = 44
+        static let menuBgColor = UIColor(colorLiteralRed: 41/255, green: 51/255, blue: 45/255, alpha: 1.0)
+        static let menuCornerRadius:CGFloat = 4
     }
     
     var popMenuDelegate: JTPopMenuDelegate?
     
     var tableView = UITableView()
-    var tableBgView = UIImageView()
-    var arrowView = UIImageView()
+    var arrowView = UIView()
     var bgView = UIImageView()
     
     var menuItems = [JTPopMenuItem]() {
@@ -56,11 +50,27 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
     
     private func setup() {
         addSubview(bgView)
-        addSubview(tableBgView)
         addSubview(tableView)
         addSubview(arrowView)
+        
+        
+        //arrowView:
+            // Build a triangular path
+        let arrowPath = UIBezierPath()
+        arrowPath.move(to: CGPoint(x:0, y:Contants.arrowViewSize.height))
+        arrowPath.addLine(to: CGPoint(x:Contants.arrowViewSize.width, y:Contants.arrowViewSize.height))
+        arrowPath.addLine(to: CGPoint(x:Contants.arrowViewSize.width / 2, y:0))
+        arrowPath.close()
+            // Create a CAShapeLayer with this triangular path
+        let arrowMask = CAShapeLayer()
+        arrowMask.frame = CGRect(origin: CGPoint.zero, size: Contants.arrowViewSize)
+        arrowMask.path = arrowPath.cgPath
+            // Mask the arrowView's layer with this shape
+        arrowView.layer.mask = arrowMask
+        arrowView.backgroundColor = Contants.menuBgColor
+        
         //tableview
-        tableView.register(JTPopMenuCell.self, forCellReuseIdentifier: Contants.MenuCellResuseID)
+        tableView.register(JTPopMenuCell.self, forCellReuseIdentifier: Contants.menuCellResuseID)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.isScrollEnabled = false
@@ -69,14 +79,9 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         let footView = UIView()
         footView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
         tableView.tableFooterView = footView //remove seperator from last cell
-        //tableView.backgroundColor = UIColor.clear //not work on this, set in layoutSubviews()
+        tableView.layer.cornerRadius = Contants.menuCornerRadius
+        //tableView.backgroundColor = Contants.menuBgColor //not work here, set in layoutSubviews()
         
-        tableBgView.contentMode = .scaleToFill
-        tableBgView.image = UIImage(named: Contants.tableBgImageName)?
-            .resizableImage(withCapInsets: Contants.tableBgImageCapInsets)
-        
-        //arrow
-        arrowView.image = UIImage(named: Contants.arrowImageName)
         
         //bgView
         bgView.backgroundColor = UIColor.black
@@ -91,35 +96,26 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
     
     override func layoutSubviews() {
         //arrowView
-        arrowView.sizeToFit()
         arrowView.frame = CGRect(x: anchorFrame.midX - (arrowView.frame.width / 2), //make it center
                                  y: anchorFrame.maxY + Contants.arrowSpacingToAnchor,
-                                 width: arrowView.frame.width,
-                                 height: arrowView.frame.height)
+                                 width: Contants.arrowViewSize.width,
+                                 height: Contants.arrowViewSize.height)
         
-        //tableBgView
+        //tableView: 相对arrowView进行定位
         let tableViewContentSize = CGSize(width: cellExpectMaxWidth, height: tableView.contentSize.height)
-        let tbgWidth = tableViewContentSize.width + (Contants.tableBgImageShadowLenght * 2)
-        let tbgHeight = tableViewContentSize.height + (Contants.tableBgImageShadowLenght * 2)
-        let tbgCantCenterXToArrow = arrowView.frame.midX + (tbgWidth / 2) + Contants.minHorizontalSpacingToScreen - Contants.tableBgImageShadowLenght
+        let tbCantCenterXToArrow = arrowView.frame.midX + (tableViewContentSize.width / 2) + Contants.minHorizontalSpacingToScreen
             < UIScreen.main.bounds.width
-        let tbgX = tbgCantCenterXToArrow
-            ? arrowView.frame.midX - (tbgWidth / 2)
-            : self.frame.width - Contants.minHorizontalSpacingToScreen - tbgWidth
-        let tbgY = arrowView.frame.maxY - Contants.tableBgImageShadowLenght
-        tableBgView.frame = CGRect(x: tbgX,
-                                   y: tbgY,
-                                   width: tbgWidth,
-                                   height: tbgHeight)
+        let tableViewX = tbCantCenterXToArrow
+            ? arrowView.frame.midX - (tableViewContentSize.width / 2)
+            : self.frame.width - Contants.minHorizontalSpacingToScreen - tableViewContentSize.width
+        let tableViewY = arrowView.frame.maxY
         
-        //tableView
-        let tableViewX = tbgX + Contants.tableBgImageShadowLenght
-        let tableViewY = tbgY + Contants.tableBgImageShadowLenght
         tableView.frame = CGRect(x:tableViewX,
                                  y: tableViewY ,
                                  width: tableViewContentSize.width,
                                  height: tableViewContentSize.height)
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = Contants.menuBgColor
+        tableView.backgroundView = nil
         
         //bgView
         bgView.frame = self.bounds
@@ -160,7 +156,7 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Contants.MenuCellResuseID, for: indexPath) as! JTPopMenuCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Contants.menuCellResuseID, for: indexPath) as! JTPopMenuCell
         cell.updateUI(withItem: menuItems[indexPath.row])
         cell.layoutIfNeeded()
         

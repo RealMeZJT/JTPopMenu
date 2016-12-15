@@ -19,12 +19,12 @@ class ViewController: UIViewController,JTPopMenuDelegate {
         super.viewDidLoad()
 
         leftMenu.menuItems = [JTPopMenuItem(withImageName: "share", title: "item1"),
-                          JTPopMenuItem(withImageName: "share", title: "item2"),
+                          JTPopMenuItem(withImageName: "share", title: "中文2"),
                           JTPopMenuItem(withImageName: "share", title: "item3")]
         leftMenu.popMenuDelegate = self
         
         rightMenu.menuItems = [JTPopMenuItem(withImageName: "share", title: "item4"),
-                          JTPopMenuItem(withImageName: "share", title: "item5"),
+                          JTPopMenuItem(withImageName: "share", title: "中文"),
                           JTPopMenuItem(withImageName: "share", title: "item6")]
         rightMenu.popMenuDelegate = self
 

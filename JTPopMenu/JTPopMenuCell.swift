@@ -19,7 +19,6 @@ class JTPopMenuCell: UITableViewCell {
         static let titleFont = UIFont.systemFont(ofSize: 17)
         static let titleColor = UIColor.white
         
-        //分界线57,71,63
     }
     
     var icon = UIImageView()

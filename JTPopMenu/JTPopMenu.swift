@@ -21,9 +21,10 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         static let arrowViewSize = CGSize(width: 12, height: 7)
         static let minHorizontalSpacingToScreen:CGFloat = 4
         static let cellHeight:CGFloat = 50
+        static let menuCornerRadius:CGFloat = 4
         
         static let menuBgColor = UIColor(colorLiteralRed: 41/255, green: 51/255, blue: 45/255, alpha: 1.0)
-        static let menuCornerRadius:CGFloat = 4
+        static let separatorColor = UIColor(colorLiteralRed: 57, green: 71, blue: 63, alpha: 1.0)
     }
     
     var popMenuDelegate: JTPopMenuDelegate?
@@ -76,6 +77,7 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         tableView.isScrollEnabled = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
+        tableView.separatorColor = Contants.separatorColor
         let footView = UIView()
         footView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
         tableView.tableFooterView = footView //remove seperator from last cell

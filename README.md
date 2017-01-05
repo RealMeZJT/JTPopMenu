@@ -3,7 +3,7 @@
 
 ## TODO
 修复在leftButtonItem下弹出时菜单左边超出屏幕的问题;  
-
+将使用方法精简为menu.show(under: barButtonItem);  
 
 ## 安装  
 将 `menu` 目录下的源文件拷贝到项目中。  

@@ -23,6 +23,8 @@ class ViewController: UIViewController,JTPopMenuDelegate {
                           JTPopMenuItem(withImageName: "share", title: "item3")]
         leftMenu.popMenuDelegate = self
         
+        let lightTheme = JTPopMenuLightTheme()
+        rightMenu.mUIConfig = lightTheme
         rightMenu.menuItems = [JTPopMenuItem(withImageName: "share", title: "item4"),
                           JTPopMenuItem(withImageName: "share", title: "中文"),
                           JTPopMenuItem(withImageName: "share", title: "item6")]

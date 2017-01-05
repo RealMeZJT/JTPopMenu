@@ -1,14 +1,14 @@
 # JTPopMenu  
-界面类似Popovers的弹出菜单。更方便的使用。  
+用于NavigationBar下的下拉式弹出菜单。
 
 ## TODO
-添加light主题;  
 修复在leftButtonItem下弹出时菜单左边超出屏幕的问题;  
-支持其它方向的显示(目前只支持在锚点view的下方显示);  
-separator颜色错误，rbg的每个数值都应该除以255；  
-将样式配置独立出来成protocol，通过实现该protocol，来独立出不同的样式，而不用直接修改JTPopMenu类;  
 
-## 使用方法
+
+## 安装  
+将 `menu` 目录下的源文件拷贝到项目中。  
+
+## 使用方法  
 ### 实例化
 	let menu = JTPopMenu()  
 ### 添加数据

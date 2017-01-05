@@ -9,16 +9,11 @@
 import UIKit
 
 class JTPopMenuCell: UITableViewCell {
-    static let ReuseIdentifier = "JTPopMenuCell"
     
-    struct Contants {
-        static let leftPadding:CGFloat = 26
-        static let rightPadding:CGFloat = 45
-        static let iconSpacingToTitle: CGFloat = 24
-        static let iconSize:CGFloat = 17
-        static let titleFont = UIFont.systemFont(ofSize: 17)
-        static let titleColor = UIColor.white
-        
+    var mUIConfig:JTPopMenuUIConfig = JTPopMenuDarkTheme() {
+        didSet {
+            config()
+        }
     }
     
     var icon = UIImageView()
@@ -37,15 +32,17 @@ class JTPopMenuCell: UITableViewCell {
     private func setup() {
         contentView.addSubview(icon)
         contentView.addSubview(titleLabel)
-        
+    }
+    
+    private func config() {
         self.backgroundColor = UIColor.clear
         self.selectionStyle = .none
         self.separatorInset = UIEdgeInsets.zero
         
         icon.contentMode = .scaleToFill
         
-        titleLabel.font = Contants.titleFont
-        titleLabel.textColor = Contants.titleColor
+        titleLabel.font = mUIConfig.titleFont
+        titleLabel.textColor = mUIConfig.titleColor
     }
     
     dynamic var expectWidth:CGFloat = 0 
@@ -53,21 +50,21 @@ class JTPopMenuCell: UITableViewCell {
         super.layoutSubviews()
         
         icon.sizeToFit()
-        icon.frame = CGRect(x: Contants.leftPadding,
-                            y: (contentView.frame.height - Contants.iconSize) / 2, //make it center
-                            width: Contants.iconSize,
-                            height: Contants.iconSize)
+        icon.frame = CGRect(x: mUIConfig.leftPadding,
+                            y: (contentView.frame.height - mUIConfig.iconSize) / 2, //make it center
+                            width: mUIConfig.iconSize,
+                            height: mUIConfig.iconSize)
         
         titleLabel.sizeToFit()
         let titleLabelX = icon.image == nil
-            ? Contants.leftPadding
-            : icon.frame.maxX + Contants.iconSpacingToTitle
+            ? mUIConfig.leftPadding
+            : icon.frame.maxX + mUIConfig.iconSpacingToTitle
         titleLabel.frame = CGRect(x: titleLabelX,
                                   y: (contentView.frame.height - titleLabel.frame.height) / 2, //make it center
                                   width: titleLabel.frame.width,
                                   height: titleLabel.frame.height)
         
-        expectWidth = titleLabel.frame.maxX  + Contants.rightPadding
+        expectWidth = titleLabel.frame.maxX  + mUIConfig.rightPadding
 
     }
     

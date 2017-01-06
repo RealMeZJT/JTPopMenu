@@ -1,6 +1,6 @@
 # JTPopMenu  
 用于NavigationBar下的下拉式弹出菜单。  
-提供示例样式，支持自定义样式。
+提供示例样式 light主题 和 dark主题。同时支持自定义样式，可以对各个元素的尺寸、间距和颜色进行修改。
 
 ## TODO
 将使用方法精简为menu.show(under: barButtonItem);  
@@ -20,13 +20,13 @@
 	menu.show(fromView: navigationController!.view, under: barButtonItem)
 
 ## 自定义样式  
-### 使用示例样式
+### 方式一:使用示例样式
 示例样式有 `JTPopMenuDarkTheme` 和 `JTPopMenuLightTheme` 两种。
 默认是dark主题样式。替换成light主题样式:  
 
 	menu.mUIConfig = JTPopMenuLightTheme()
 
-### 继承示例样式，覆盖个别属性
+### 方式二:继承示例样式，覆盖个别属性
 可以通过继承示例样式,比如 `JTPopMenuDarkTheme` ,然后对个别属性进行 override。
 
 	class MyTheme: JTPopMenuDarkTheme {
@@ -39,8 +39,8 @@
 	menu.mUIConfig = MyTheme()
 
 
-### 实现JTPopMenuUIConfig协议  
-还可通过实现JTPopMenuUIConfig协议对样式进行完全自定义，但是需要实现的属性比较多，并不推荐此方法。 
+### 方式三:实现JTPopMenuUIConfig协议  
+还可通过实现JTPopMenuUIConfig协议创建完全自定义的样式，需要实现比较多的属性。 
 
 
 

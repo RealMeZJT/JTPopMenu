@@ -1,8 +1,8 @@
 # JTPopMenu  
-用于NavigationBar下的下拉式弹出菜单。
+用于NavigationBar下的下拉式弹出菜单。  
+提供示例样式，支持自定义样式。
 
 ## TODO
-修复在leftButtonItem下弹出时菜单左边超出屏幕的问题;  
 将使用方法精简为menu.show(under: barButtonItem);  
 
 ## 安装  
@@ -16,5 +16,31 @@
 	menu.menuItems = [JTPopMenuItem(withImageName: "myImage", title: "item1"),  
                     JTPopMenuItem(withImageName: "myImage", title: "item2"),  
                     JTPopMenuItem(withImageName: "myImage", title: "item3")]  
-### 显示
+### 显示菜单
 	menu.show(fromView: navigationController!.view, under: barButtonItem)
+
+## 自定义样式  
+### 使用示例样式
+示例样式有 `JTPopMenuDarkTheme` 和 `JTPopMenuLightTheme` 两种。
+默认是dark主题样式。替换成light主题样式:  
+
+	menu.mUIConfig = JTPopMenuLightTheme()
+
+### 继承示例样式，覆盖个别属性
+可以通过继承示例样式,比如 `JTPopMenuDarkTheme` ,然后对个别属性进行 override。
+
+	class MyTheme: JTPopMenuDarkTheme {
+	    override var menuBgColor: UIColor {return UIColor.brown}
+	    override var separatorColor: UIColor {return UIColor.lightGray}
+	    override var titleColor: UIColor {return UIColor.black}
+	}
+使用你的自定义样式  
+
+	menu.mUIConfig = MyTheme()
+
+
+### 实现JTPopMenuUIConfig协议  
+还可通过实现JTPopMenuUIConfig协议对样式进行完全自定义，但是需要实现的属性比较多，并不推荐此方法。 
+
+
+

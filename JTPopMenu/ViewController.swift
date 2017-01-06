@@ -25,9 +25,9 @@ class ViewController: UIViewController,JTPopMenuDelegate {
         
         let lightTheme = JTPopMenuLightTheme()
         rightMenu.mUIConfig = lightTheme
-        rightMenu.menuItems = [JTPopMenuItem(withImageName: "share", title: "item4"),
-                          JTPopMenuItem(withImageName: "share", title: "中文"),
-                          JTPopMenuItem(withImageName: "share", title: "item6")]
+        rightMenu.menuItems = [JTPopMenuItem(title: "无图item4"),
+                          JTPopMenuItem(title: "无图中文5"),
+                          JTPopMenuItem(title: "无图item6")]
         rightMenu.popMenuDelegate = self
 
     }

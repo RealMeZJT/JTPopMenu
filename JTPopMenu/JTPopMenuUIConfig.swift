@@ -8,17 +8,6 @@
 
 import UIKit
 
-/*
- struct Contants {
- var leftPadding:CGFloat = 26
- var rightPadding:CGFloat = 45
- var iconSpacingToTitle: CGFloat = 24
- var iconSize:CGFloat = 17
- var titleFont = UIFont.systemFont(ofSize: 17)
- var titleColor = UIColor.white
- 
- }
- */
 ///PopMenu的样式配置
 protocol JTPopMenuUIConfig {
     var bgViewAlpha:CGFloat {get}
@@ -38,6 +27,7 @@ protocol JTPopMenuUIConfig {
     var titleColor:UIColor {get}
 }
 
+//MARK: - Theme
 class JTPopMenuDarkTheme: JTPopMenuUIConfig {
     var bgViewAlpha:CGFloat { return 0.10 }
     var arrowSpacingToAnchor:CGFloat {return 8 }
@@ -52,7 +42,7 @@ class JTPopMenuDarkTheme: JTPopMenuUIConfig {
     }
     var cellHeight:CGFloat { return 50 }
     var leftPadding:CGFloat { return 26 }
-    var rightPadding:CGFloat { return 45 }
+    var rightPadding:CGFloat { return 26 }
     var iconSpacingToTitle: CGFloat { return 24 }
     var iconSize:CGFloat { return 17 }
     var titleFont:UIFont { return UIFont.systemFont(ofSize: 17) }
@@ -62,5 +52,6 @@ class JTPopMenuDarkTheme: JTPopMenuUIConfig {
 
 class JTPopMenuLightTheme: JTPopMenuDarkTheme {
     override var menuBgColor: UIColor {return UIColor.white}
+    override var separatorColor: UIColor {return UIColor.lightGray}
     override var titleColor: UIColor {return UIColor.black}
 }

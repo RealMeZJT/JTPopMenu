@@ -16,7 +16,11 @@ protocol JTPopMenuDelegate {
 
 class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
     static let MenuCellResuseID = "JTPopMenuCell"
-    var mUIConfig:JTPopMenuUIConfig = JTPopMenuDarkTheme()
+    var mUIConfig:JTPopMenuUIConfig = JTPopMenuDarkTheme() {
+        didSet {
+            config()
+        }
+    }
     
     var popMenuDelegate: JTPopMenuDelegate?
     
@@ -33,11 +37,13 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
+        config()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
+        config()
     }
     
     private func setup() {
@@ -59,7 +65,6 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         arrowMask.path = arrowPath.cgPath
             // Mask the arrowView's layer with this shape
         arrowView.layer.mask = arrowMask
-        arrowView.backgroundColor = mUIConfig.menuBgColor
         
         //tableview
         tableView.register(JTPopMenuCell.self, forCellReuseIdentifier: JTPopMenu.MenuCellResuseID)
@@ -68,23 +73,29 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         tableView.isScrollEnabled = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
-        tableView.separatorColor = mUIConfig.separatorColor
+        
         let footView = UIView()
         footView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
         tableView.tableFooterView = footView //remove seperator from last cell
-        tableView.layer.cornerRadius = mUIConfig.menuCornerRadius
-        //tableView.backgroundColor = mUIConfig.menuBgColor //not work here, set in layoutSubviews()
-        
         
         //bgView
-        bgView.backgroundColor = UIColor.black
-        bgView.alpha = mUIConfig.bgViewAlpha
         bgView.isUserInteractionEnabled = true
         let bgTap = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
         bgView.addGestureRecognizer(bgTap)
         
         //self
         self.frame = UIScreen.main.bounds
+    }
+    
+    private func config() {
+        arrowView.backgroundColor = mUIConfig.menuBgColor
+        
+        tableView.separatorColor = mUIConfig.separatorColor
+        tableView.layer.cornerRadius = mUIConfig.menuCornerRadius
+        //tableView.backgroundColor = mUIConfig.menuBgColor //not work here, set in layoutSubviews()
+        
+        bgView.backgroundColor = UIColor.black
+        bgView.alpha = mUIConfig.bgViewAlpha
     }
     
     override func layoutSubviews() {
@@ -96,11 +107,9 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         
         //tableView: 相对arrowView进行定位
         let tableViewContentSize = CGSize(width: cellExpectMaxWidth, height: tableView.contentSize.height)
-        let tbCantCenterXToArrow = arrowView.frame.midX + (tableViewContentSize.width / 2) + mUIConfig.minHorizontalSpacingToScreen
-            < UIScreen.main.bounds.width
-        let tableViewX = tbCantCenterXToArrow
-            ? arrowView.frame.midX - (tableViewContentSize.width / 2)
-            : self.frame.width - mUIConfig.minHorizontalSpacingToScreen - tableViewContentSize.width
+       
+        let tableViewX = getTableViewX(byArrowViewFrame: arrowView.frame,
+                                    tableViewContentSize: tableViewContentSize)
         let tableViewY = arrowView.frame.maxY
         
         tableView.frame = CGRect(x:tableViewX,
@@ -113,6 +122,30 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         //bgView
         bgView.frame = self.bounds
 
+    }
+    
+    private func getTableViewX(byArrowViewFrame arrowFrame:CGRect, tableViewContentSize:CGSize) -> CGFloat{
+        let isRightSide = arrowFrame.midX > self.frame.midX //箭头(arrow)是否在屏幕右边
+        var result:CGFloat = 0
+        if isRightSide {
+            //从arrowView的中心开始，向右延伸tableView一半的宽度，再向右延伸"到屏幕最小间距"，是否会超出屏幕；
+            //如果不会超出，则可以让arrowView和tableView居中对齐。
+            let tbCantCenterXToArrow = arrowView.frame.midX + (tableViewContentSize.width / 2) + mUIConfig.minHorizontalSpacingToScreen
+                < self.bounds.width
+            result = tbCantCenterXToArrow
+                ? arrowView.frame.midX - (tableViewContentSize.width / 2)
+                : self.frame.width - mUIConfig.minHorizontalSpacingToScreen - tableViewContentSize.width
+        } else {
+            //从arrowView的中心开始，向左延伸tableView一半的宽度，再向左延伸"到屏幕最小间距"，是否会超出屏幕；
+            //如果不会超出，则可以让arrowView和tableView居中对齐。
+            let tbCantCenterXToArrow = arrowView.frame.midX - (tableViewContentSize.width / 2) - mUIConfig.minHorizontalSpacingToScreen
+                > 0
+            result = tbCantCenterXToArrow
+                ? arrowView.frame.midX - (tableViewContentSize.width / 2)
+                : 0 + mUIConfig.minHorizontalSpacingToScreen
+        }
+        
+        return result
     }
     
     func show(fromView container:UIView, under barbuttonItem: UIBarButtonItem) {
@@ -179,3 +212,4 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
     }
 
 }
+

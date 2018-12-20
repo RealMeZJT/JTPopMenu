@@ -159,7 +159,7 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         container.addSubview(self)
     }
     
-    func backgroundTapped() {
+    @objc func backgroundTapped() {
         dismiss()
     }
     

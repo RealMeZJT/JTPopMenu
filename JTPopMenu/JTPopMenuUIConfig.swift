@@ -35,10 +35,10 @@ class JTPopMenuDarkTheme: JTPopMenuUIConfig {
     var minHorizontalSpacingToScreen:CGFloat { return 4 }
     var menuCornerRadius:CGFloat { return 4 }
     var menuBgColor:UIColor {
-        return UIColor(colorLiteralRed: 41/255, green: 51/255, blue: 45/255, alpha: 1.0)
+        return UIColor(red: 41/255, green: 51/255, blue: 45/255, alpha: 1.0)
     }
     var separatorColor:UIColor {
-        return UIColor(colorLiteralRed: 57/255, green: 71/255, blue: 63/255, alpha: 1.0)
+        return UIColor(red: 57/255, green: 71/255, blue: 63/255, alpha: 1.0)
     }
     var cellHeight:CGFloat { return 50 }
     var leftPadding:CGFloat { return 26 }

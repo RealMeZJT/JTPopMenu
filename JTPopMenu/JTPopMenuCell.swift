@@ -19,7 +19,7 @@ class JTPopMenuCell: UITableViewCell {
     var icon = UIImageView()
     var titleLabel = UILabel()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
     }
@@ -45,7 +45,7 @@ class JTPopMenuCell: UITableViewCell {
         titleLabel.textColor = mUIConfig.titleColor
     }
     
-    dynamic var expectWidth:CGFloat = 0 
+    @objc dynamic var expectWidth:CGFloat = 0 
     override func layoutSubviews() {
         super.layoutSubviews()
         

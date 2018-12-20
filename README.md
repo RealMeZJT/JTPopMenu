@@ -2,8 +2,8 @@
 用于NavigationBar下的下拉式弹出菜单。  
 提供示例样式 light主题 和 dark主题。同时支持自定义样式，可以对各个元素的尺寸、间距和颜色进行修改。  
 
-![popMenuDark](http://7xr5jb.com1.z0.glb.clouddn.com/readme%23popMenuDark1.png)
-![popMenuLight](http://7xr5jb.com1.z0.glb.clouddn.com/readme%23popMenuLight1.png)
+![popMenuDark](https://github.com/RealMeZJT/JTPopMenu/blob/master/Docs/Simulator%20Screen%20Shot%20-%20iPhone%20XR%20-%202018-12-20%20at%2021.53.04.png)
+![popMenuLight](https://github.com/RealMeZJT/JTPopMenu/blob/master/Docs/Simulator%20Screen%20Shot%20-%20iPhone%20XR%20-%202018-12-20%20at%2021.53.07.png)
 
 ## TODO
 将使用方法精简为menu.show(under: barButtonItem);  

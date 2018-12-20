@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12274D1921CBD6A60053B557 /* Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.07.png in Resources */ = {isa = PBXBuildFile; fileRef = 12274D1721CBD6A60053B557 /* Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.07.png */; };
+		12274D1A21CBD6A60053B557 /* Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.04.png in Resources */ = {isa = PBXBuildFile; fileRef = 12274D1821CBD6A60053B557 /* Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.04.png */; };
 		5AA3BA1C1E1E899C00EB6539 /* JTPopMenuUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA3BA1B1E1E899C00EB6539 /* JTPopMenuUIConfig.swift */; };
 		B27457191DFFEC420097C4D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27457181DFFEC420097C4D6 /* AppDelegate.swift */; };
 		B274571B1DFFEC420097C4D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B274571A1DFFEC420097C4D6 /* ViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12274D1721CBD6A60053B557 /* Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.07.png"; sourceTree = "<group>"; };
+		12274D1821CBD6A60053B557 /* Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.04.png"; sourceTree = "<group>"; };
 		5AA3BA1B1E1E899C00EB6539 /* JTPopMenuUIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTPopMenuUIConfig.swift; sourceTree = "<group>"; };
 		B27457151DFFEC420097C4D6 /* JTPopMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JTPopMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27457181DFFEC420097C4D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12274D1621CBD6700053B557 /* ReadMePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				12274D1821CBD6A60053B557 /* Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.04.png */,
+				12274D1721CBD6A60053B557 /* Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.07.png */,
+			);
+			name = ReadMePhoto;
+			sourceTree = "<group>";
+		};
 		B274570C1DFFEC420097C4D6 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +75,7 @@
 		B27457171DFFEC420097C4D6 /* JTPopMenu */ = {
 			isa = PBXGroup;
 			children = (
+				12274D1621CBD6700053B557 /* ReadMePhoto */,
 				B274572A1DFFEEAB0097C4D6 /* Menu */,
 				B27457181DFFEC420097C4D6 /* AppDelegate.swift */,
 				B274571A1DFFEC420097C4D6 /* ViewController.swift */,
@@ -145,9 +159,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12274D1A21CBD6A60053B557 /* Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.04.png in Resources */,
 				B27457231DFFEC420097C4D6 /* LaunchScreen.storyboard in Resources */,
 				B27457201DFFEC420097C4D6 /* Assets.xcassets in Resources */,
 				B274571E1DFFEC420097C4D6 /* Main.storyboard in Resources */,
+				12274D1921CBD6A60053B557 /* Simulator Screen Shot - iPhone XR - 2018-12-20 at 21.53.07.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

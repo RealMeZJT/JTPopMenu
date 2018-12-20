@@ -43,6 +43,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12274D1B21CBD94B0053B557 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				B274572B1DFFEED00097C4D6 /* JTPopMenu.swift */,
+				B274572D1DFFF2410097C4D6 /* JTPopMenuCell.swift */,
+				B274572F1DFFF8DE0097C4D6 /* JTPopMenuItem.swift */,
+				5AA3BA1B1E1E899C00EB6539 /* JTPopMenuUIConfig.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
 		B274570C1DFFEC420097C4D6 = {
 			isa = PBXGroup;
 			children = (
@@ -62,7 +73,7 @@
 		B27457171DFFEC420097C4D6 /* JTPopMenu */ = {
 			isa = PBXGroup;
 			children = (
-				B274572A1DFFEEAB0097C4D6 /* Menu */,
+				12274D1B21CBD94B0053B557 /* Menu */,
 				B27457181DFFEC420097C4D6 /* AppDelegate.swift */,
 				B274571A1DFFEC420097C4D6 /* ViewController.swift */,
 				B274571C1DFFEC420097C4D6 /* Main.storyboard */,
@@ -71,17 +82,6 @@
 				B27457241DFFEC420097C4D6 /* Info.plist */,
 			);
 			path = JTPopMenu;
-			sourceTree = "<group>";
-		};
-		B274572A1DFFEEAB0097C4D6 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				B274572B1DFFEED00097C4D6 /* JTPopMenu.swift */,
-				B274572D1DFFF2410097C4D6 /* JTPopMenuCell.swift */,
-				B274572F1DFFF8DE0097C4D6 /* JTPopMenuItem.swift */,
-				5AA3BA1B1E1E899C00EB6539 /* JTPopMenuUIConfig.swift */,
-			);
-			name = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

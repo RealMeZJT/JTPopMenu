@@ -8,10 +8,10 @@
 
 import Foundation
 
-class JTPopMenuItem {
-    var imageName: String?
-    var title: String
-    init(withImageName imageName: String? = nil, title: String) {
+public class JTPopMenuItem {
+    public var imageName: String?
+    public var title: String
+    public init(withImageName imageName: String? = nil, title: String) {
         self.imageName = imageName
         self.title = title
     }

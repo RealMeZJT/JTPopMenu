@@ -8,39 +8,39 @@
 
 import UIKit
 
-protocol JTPopMenuDelegate {
+public protocol JTPopMenuDelegate {
     func popMenu(_ popMenu: JTPopMenu, didSelectRowAt row: Int, withItem item: JTPopMenuItem)
 }
 
 
 
-class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
+public class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
     static let MenuCellResuseID = "JTPopMenuCell"
-    var mUIConfig:JTPopMenuUIConfig = JTPopMenuDarkTheme() {
+    public var mUIConfig:JTPopMenuUIConfig = JTPopMenuDarkTheme() {
         didSet {
             config()
         }
     }
     
-    var popMenuDelegate: JTPopMenuDelegate?
+    public var popMenuDelegate: JTPopMenuDelegate?
     
     var tableView = UITableView()
     var arrowView = UIView()
     var bgView = UIImageView()
     
-    var menuItems = [JTPopMenuItem]() {
+    public var menuItems = [JTPopMenuItem]() {
         didSet {
             tableView.reloadData()
         }
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
         config()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
         config()
@@ -98,7 +98,7 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         bgView.alpha = mUIConfig.bgViewAlpha
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         //arrowView
         arrowView.frame = CGRect(x: anchorFrame.midX - (arrowView.frame.width / 2), //make it center
                                  y: anchorFrame.maxY + mUIConfig.arrowSpacingToAnchor,
@@ -148,7 +148,7 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         return result
     }
     
-    func show(fromView container:UIView, under barbuttonItem: UIBarButtonItem) {
+    public func show(fromView container:UIView, under barbuttonItem: UIBarButtonItem) {
         let anchorView = barbuttonItem.value(forKey: "view") as! UIView
         show(fromView: container, at: anchorView)
     }
@@ -163,16 +163,16 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         dismiss()
     }
     
-    func dismiss() {
+    public func dismiss() {
         removeFromSuperview()
     }
     
     //MARK: - UITableViewDataSource
-    func numberOfSections(in tableView: UITableView) -> Int {
+    private func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItems.count
     }
     
@@ -181,7 +181,7 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
             self.setNeedsLayout()
         }
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: JTPopMenu.MenuCellResuseID, for: indexPath) as! JTPopMenuCell
         cell.mUIConfig = mUIConfig
         cell.updateUI(withItem: menuItems[indexPath.row])
@@ -194,19 +194,19 @@ class JTPopMenu: UIView,UITableViewDataSource,UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    private func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return mUIConfig.cellHeight
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    private func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dismiss()
         popMenuDelegate?.popMenu(self, didSelectRowAt: indexPath.row, withItem: menuItems[indexPath.row])
     }

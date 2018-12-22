@@ -8,16 +8,16 @@
 
 import UIKit
 
-class JTPopMenuCell: UITableViewCell {
+public class JTPopMenuCell: UITableViewCell {
     
-    var mUIConfig:JTPopMenuUIConfig = JTPopMenuDarkTheme() {
+    public var mUIConfig:JTPopMenuUIConfig = JTPopMenuDarkTheme() {
         didSet {
             config()
         }
     }
     
-    var icon = UIImageView()
-    var titleLabel = UILabel()
+    public var icon = UIImageView()
+    public var titleLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -46,7 +46,7 @@ class JTPopMenuCell: UITableViewCell {
     }
     
     @objc dynamic var expectWidth:CGFloat = 0 
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         icon.sizeToFit()
@@ -75,7 +75,7 @@ class JTPopMenuCell: UITableViewCell {
     }
     
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    override public func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
